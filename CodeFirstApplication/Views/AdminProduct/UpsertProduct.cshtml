@@ -1,0 +1,112 @@
+﻿@model NewProduct
+@{
+    string title = "Create Product";
+}
+
+<form method="post" enctype="multipart/form-data">
+    <div class="row p-3 border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @if (Model.Product.IdProduct != 0)
+        {
+            title = "Edit Product";
+            <input type="hidden" asp-for="Product.IdProduct" />
+        }
+        <div class="col-12 border-bottom">
+            <h2 class="text-primary">@title</h2>
+        </div>
+        <div class="col-8 pt-4">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Product.NameProduct">Name Product</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Product.NameProduct" class="form-control" />
+                    <span asp-validation-for="Product.NameProduct" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Product.DescriptionProduct">Description Product</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Product.DescriptionProduct" class="form-control" />
+                    <span asp-validation-for="Product.DescriptionProduct" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Product.MemoryProduct">Memory Product</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Product.MemoryProduct" class="form-control" />
+                    <span asp-validation-for="Product.MemoryProduct" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Product.StorageCapacityProduct">Storage Capacity Product</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Product.StorageCapacityProduct" class="form-control" />
+                    <span asp-validation-for="Product.StorageCapacityProduct" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Product.ResolutionImageProduct">Resolution Image Product</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Product.ResolutionImageProduct" class="form-control" />
+                    <span asp-validation-for="Product.ResolutionImageProduct" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Product.ImageUrlProduct">URL Image Product</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Product.ImageUrlProduct" class="form-control" />
+                    <span asp-validation-for="Product.ImageUrlProduct" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Product.PriceProduct">Price Product</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Product.PriceProduct" class="form-control" />
+                    <span asp-validation-for="Product.PriceProduct" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    Category Product
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(m => m.Product.CategoryId, Model.CategoryList, "-- Select a Category --",
+                   new { @class = "form-control" })
+                    <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-8 offset-4">
+                    @if (Model.Product.IdProduct != 0)
+                    {
+                        <partial name="_EditAndBackToListButton" model="Model.Product.IdProduct"></partial>
+                    }
+                    else
+                    {
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" onclick="" class="btn btn-primary form-control">Create</button>
+                            </div>
+                            <div class="col">
+                                <a asp-action="Products" class="btn btn-success form-control">Back to List</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
